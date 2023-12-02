@@ -1,0 +1,23 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column; /* arrage items on top of the other */
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+canvas{
+    /*box-shadow: #7DFDFE 5px 10px 50px;*/
+    display: grid;
+    gap: 50px;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto auto auto;
+    border: 5px solid white;
+}
+
+canvas > * {
+    border: 5px solid white; /* set a 1px solid white border on each grid item */
+}
