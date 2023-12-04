@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const http = require('http');
 const WebSocket = require('ws');
 
@@ -7,11 +6,13 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+app.use(express.static(path.join(__dirname, 'public'), { index: 'grid.html' }));
 
-app.use(express.static(path.join(__dirname, 'public')));
+/*
+app.get('/', (req, res) => {
+    res.send('Hello, this is the root!');
+});
+*/
 
 const users = [];
 
@@ -38,7 +39,6 @@ wss.on('connection', (ws) => {
     broadcastUsers();
 
     ws.on('message', (message) => {
-        const parsedMessage = JSON.parse(message);
         broadcastUsers();
     });
 
@@ -67,7 +67,7 @@ function broadcastUsers() {
     });
 }
 
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

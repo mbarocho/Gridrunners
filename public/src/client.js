@@ -72,19 +72,19 @@ function keyInput(event) {
             }
             break;
         case 'KeyS':
-            if(player1.yVelocity != 1) {
+            if(player1.yVelocity != -1) {
                 player1.yVelocity=1; //move one tile down
                 player1.xVelocity=0;
             }
             break;
         case 'KeyA':
-            if(player1.yVelocity != 1) {
+            if(player1.xVelocity != 1) {
                 player1.yVelocity=0; //move one tile left
                 player1.xVelocity=-1;
             }
             break;
         case 'KeyD':
-            if(player1.yVelocity != 1) {
+            if(player1.xVelocity != -1) {
                 player1.yVelocity=0; //move one tile right
                 player1.xVelocity=1;
             }
@@ -98,19 +98,19 @@ function keyInput(event) {
             }
             break;
         case 'KeyS':
-            if(player2.yVelocity != 1) {
+            if(player2.yVelocity != -1) {
                 player2.yVelocity=1; //move one tile down
                 player2.xVelocity=0;
             }
             break;
         case 'KeyA':
-            if(player2.yVelocity != 1) {
+            if(player2.xVelocity != 1) {
                 player2.yVelocity=0; //move one tile left
                 player2.xVelocity=-1;
             }
             break;
         case 'KeyD':
-            if(player2.yVelocity != 1) {
+            if(player2.xVelocity != -1) {
                 player2.yVelocity=0; //move one tile right
                 player2.xVelocity=1;
             }
