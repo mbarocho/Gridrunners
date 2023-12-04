@@ -6,7 +6,13 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public'), { index: 'grid.html' }));
+
+/*
+app.get('/', (req, res) => {
+    res.send('Hello, this is the root!');
+});
+*/
 
 const users = [];
 
