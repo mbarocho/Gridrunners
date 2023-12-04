@@ -1,7 +1,6 @@
 // WebSocket
 const ws = new WebSocket('ws://localhost:8080');
 
-
 // Connection Establishment
 ws.onopen = () => {
     console.log('Connected to WebSocket server');
