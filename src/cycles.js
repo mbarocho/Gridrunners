@@ -1,7 +1,7 @@
 // Game Grid Variables
 const grid = document.getElementById('grid'); 
 const gridFill = grid.getContext('2d');
-let refresh = 10; //The interval will be seven times a second.
+let refresh = 10; //The interval will be ten times a second.
 let tileCount = 80;
 let tileSize = 10;
 
@@ -11,7 +11,7 @@ class User {
         this.x = startX;
         this.y = startY;
         this.xVelocity = 0;
-        this.yVelocity = 0;
+        this.yVelocity = this.color === "#7DFDFE" ? -1 : 1;
         this.lightTrail = [];
     }
 }
@@ -122,8 +122,10 @@ function isGameOver() {
     let gameOver = false;
 
     // Check if Game has started
-    if ((users[0].yVelocity === 0 && users[0].xVelocity === 0) || (users[1].yVelocity === 0 && users[1].xVelocity === 0)) {
-        return false;
+    for (const user of users) {
+        if ((user.yVelocity === 0 && user.xVelocity === 0)) {
+            return false;
+        }
     }
 
     // Check Wall Collisions
@@ -134,20 +136,55 @@ function isGameOver() {
         }
     }
 
+    /*
     // Check Own Collisions
-    for (i = 0; i < user[0].lightTrail.length; i++) {
-        let trail = user[0].lightTrail[i];
-        if (user.x == trail.x && user.y === trail.y) {
-            gameOver = true;
-            break;
+    for (const user of users) {
+        for (i = 0; i < user.lightTrail.length; i++) {
+            let trail = user.lightTrail[i];
+            if (user.x == trail.x && user.y === trail.y) {
+                gameOver = true;
+                break;
+            }
         }
     }
 
     // Check Opponent Collisions
-    if (user[0] !== user[1]) {
-        for (i = 0; i < user[1].lightTrail.length; i++) {
-            let trail = user[1].lightTrail[i]
-            if (user.x === trail.x && user.y === trail.y) {
+    for (const user of users) {
+        for (let i = 0; i < user.lightTrail.length; i++) {
+            let trail = user.lightTrail[i];
+            for (const otherUser of users) {
+                if (user !== otherUser) {
+                    for (let j = 0; j < otherUser.lightTrail.length; j++) {
+                        let otherTrail = otherUser.lightTrail[j];
+                        if (user.x === otherTrail.x && user.y === otherTrail.y) {
+                            gameOver = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    */
+
+    // Check Collisions
+    for (const user of users) {
+        for (let i = 0; i < user.lightTrail.length; i++) {
+            let trail = user.lightTrail[i];
+            // Opponent Trail
+            for (const otherUser of users) {
+                if (user !== otherUser) {
+                    for (let j = 0; j < otherUser.lightTrail.length; j++) {
+                        let otherTrail = otherUser.lightTrail[j];
+                        if (user.x === otherTrail.x && user.y === otherTrail.y) {
+                            gameOver = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            // Own Trail
+            if (user.x == trail.x && user.y === trail.y) {
                 gameOver = true;
                 break;
             }
@@ -155,8 +192,14 @@ function isGameOver() {
     }
 
     // Check Head-on Collisions
-    if (user[0].x === user[1].x && user[0].y === user[1].y) {
-        gameOver = true;
+    for (const user of users) {
+        for (const otherUser of users) {
+            if (user !== otherUser) {
+                if (user.x === otherUser.x && user.y === otherUser.y) {
+                    gameOver = true;
+                }
+            }
+        }
     }
 
     if (gameOver) {
@@ -191,11 +234,11 @@ function drawGame() {
 
 function resetGame() {
     for (const user of users) {
-        player.x = Math.floor(tileCount / 2);
-        player.y = player.color === "#7DFDFE" ? Math.floor(tileCount - 2) : 2;
-        player.xVelocity = 0;
-        player.yVelocity = player.color === "#7DFDFE" ? -1 : 1;
-        player.lightTrail.length = 0;
+        user.x = Math.floor(tileCount / 2);
+        user.y = user.color === "#7DFDFE" ? Math.floor(tileCount - 2) : 2;
+        user.xVelocity = 0;
+        user.yVelocity = user.color === "#7DFDFE" ? -1 : 1;
+        user.lightTrail.length = 0;
     }
 
     drawGame(); // Restart the game loop
