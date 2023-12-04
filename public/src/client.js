@@ -1,5 +1,5 @@
 // WebSocket
-const ws = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket('wss://the-grid.onrender.com');
 
 // Connection Establishment
 ws.onopen = () => {
