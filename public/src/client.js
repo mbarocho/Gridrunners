@@ -57,65 +57,96 @@ function sleep(ms) {
 }
 
 // Cycle 1 Controls
-function keyInput(event) {
-    // Player 1
-    const player1 = User.users[0];
-    // Player 2
-    const player2 = User.users[1];
-
+function keyInputUser1(event) {
+    const user1 = User.users[0];
     switch (event.code) {
         // Player 1
         case 'KeyW':
-            if (player1.yVelocity != 1) {
-                player1.yVelocity = -1; // Move one tile up
-                player1.xVelocity = 0;
+            if (user1.yVelocity != 1) {
+                user1.yVelocity = -1; // Move one tile up
+                user1.xVelocity = 0;
             }
             break;
         case 'KeyS':
-            if(player1.yVelocity != -1) {
-                player1.yVelocity=1; //move one tile down
-                player1.xVelocity=0;
+            if(user1.yVelocity != -1) {
+                user1.yVelocity=1; //move one tile down
+                user1.xVelocity=0;
             }
             break;
         case 'KeyA':
-            if(player1.xVelocity != 1) {
-                player1.yVelocity=0; //move one tile left
-                player1.xVelocity=-1;
+            if(user1.xVelocity != 1) {
+                user1.yVelocity=0; //move one tile left
+                user1.xVelocity=-1;
             }
             break;
         case 'KeyD':
-            if(player1.xVelocity != -1) {
-                player1.yVelocity=0; //move one tile right
-                player1.xVelocity=1;
+            if(user1.xVelocity != -1) {
+                user1.yVelocity=0; //move one tile right
+                user1.xVelocity=1;
             }
             break;
+    }
+}
 
-        // Player 2
+/*
+function keyInputUser2(event) {
+    const user2 = User.users[1];
+    switch (event.code) {
         case 'KeyW':
-            if (player2.yVelocity != 1) {
-                player2.yVelocity = -1; // Move one tile up
-                player2.xVelocity = 0;
+            if (user2.yVelocity != 1) {
+                user2.yVelocity = -1; // Move one tile up
+                user2.xVelocity = 0;
             }
             break;
         case 'KeyS':
-            if(player2.yVelocity != -1) {
-                player2.yVelocity=1; //move one tile down
-                player2.xVelocity=0;
+            if(user2.yVelocity != -1) {
+                user2.yVelocity=1; //move one tile down
+                user2.xVelocity=0;
             }
             break;
         case 'KeyA':
-            if(player2.xVelocity != 1) {
-                player2.yVelocity=0; //move one tile left
-                player2.xVelocity=-1;
+            if(user2.xVelocity != 1) {
+                user2.yVelocity=0; //move one tile left
+                user2.xVelocity=-1;
             }
             break;
         case 'KeyD':
-            if(player2.xVelocity != -1) {
-                player2.yVelocity=0; //move one tile right
-                player2.xVelocity=1;
+            if(user2.xVelocity != -1) {
+                user2.yVelocity=0; //move one tile right
+                user2.xVelocity=1;
             }
             break;
+    }
+}
+*/
 
+function keyInputUser2(event) {
+    const user2 = User.users[1];
+    switch (event.code) {
+        case 'ArrowUp':
+            if (user2.yVelocity != 1) {
+                user2.yVelocity = -1; // Move one tile up
+                user2.xVelocity = 0;
+            }
+            break;
+        case 'ArrowDown':
+            if(user2.yVelocity != -1) {
+                user2.yVelocity=1; //move one tile down
+                user2.xVelocity=0;
+            }
+            break;
+        case 'ArrowLeft':
+            if(user2.xVelocity != 1) {
+                user2.yVelocity=0; //move one tile left
+                user2.xVelocity=-1;
+            }
+            break;
+        case 'ArrowRight':
+            if(user2.xVelocity != -1) {
+                user2.yVelocity=0; //move one tile right
+                user2.xVelocity=1;
+            }
+            break;
     }
 }
 
@@ -240,8 +271,8 @@ function isGameOver() {
 // Game Function
 function drawGame() {
     // Add controllers to cycles
-    document.body.addEventListener('keydown', (event) => keyInput(event, 0)); // Player 1
-    document.body.addEventListener('keydown', (event) => keyInput(event, 1)); // Player 2
+    document.body.addEventListener('keydown', (event) => keyInputUser1(event, 0)); // Player 1
+    document.body.addEventListener('keydown', (event) => keyInputUser2(event, 1)); // Player 2
 
     changeCyclePosition();
     let result = isGameOver();
