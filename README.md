@@ -1,3 +1,3 @@
-# The-Grid
+# Gridrunners
  
 A browser-based game based on a cult classic 1982 film.
