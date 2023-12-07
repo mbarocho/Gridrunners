@@ -26,13 +26,13 @@ class User {
     }
 
     static users = [
-        new User("#7DFDFE", Math.floor(tileCount / 4), Math.floor(tileCount - 2)),
-        new User("#DF740C", Math.floor((3 * tileCount) / 4), 2),
+        new User("#7DFDFE", Math.floor(tileCount / 2), Math.floor(tileCount - 2)),
+        new User("#DF740C", Math.floor(tileCount / 2), 2),
     ];
 
     static resetUsers() {
         User.users.forEach((player, index) => {
-            player.x = index === 0 ? Math.floor(tileCount / 4) : Math.floor((3 * tileCount) / 4);
+            player.x = Math.floor(tileCount / 2);
             player.y = index === 0 ? Math.floor(tileCount - 2) : 2;
             player.xVelocity = 0;
             player.yVelocity = index === 0 ? -1 : 1;
