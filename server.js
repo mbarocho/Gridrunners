@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
-app.use(express.static(path.join(__dirname, 'public'), { index: 'grid.html' }));
+app.use(express.static(path.join(__dirname, 'public'), { index: 'index.html' }));
 
 /*
 app.get('/', (req, res) => {
