@@ -11,14 +11,34 @@
         <img class="banner" src="../assets/banner.png"/>
         <div style="margin-top: 100px;">
             <div style="text-align: center;">
+                <div class="popup">
+                    <a href="grid.html">
+                        <button class="tron-button" id="singleplayer" onmouseover="revealWarning()" onmouseout="hideWarning()">User vs. Program</button>
+                    </a>
+                    <span class="popuptext" id="disclaimer">WARNING: The Program "Asimov" is still under testing.</span>
+                </div><br>
+
                 <a href="grid.html">
-                    <button class="tron-button">Local Multiplayer</button>
+                    <button class="tron-button" id="local-multiplayer">Local Multiplayer</button>
                 </a><br>
                 <a href="about.html">
-                    <button class="tron-button">Information</button>
+                    <button class="tron-button" id="about">Information</button>
                 </a><br>
             </div>
         </div>
-        
+
+        <script>
+        function revealWarning() {
+            var popup = document.getElementById("disclaimer");
+            popup.classList.add("show");
+            popup.classList.remove("hide");
+        }
+
+        function hideWarning() {
+            var popup = document.getElementById("disclaimer");
+            popup.classList.add("hide");
+            popup.classList.remove("show");
+        }
+        </script>
     </body>
 </html>
