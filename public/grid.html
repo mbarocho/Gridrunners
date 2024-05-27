@@ -2,18 +2,21 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="tron.css">
-        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+        <title>The Gridrunner Arena</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <!--The Game Grid-->
-        <img class="banner" src="../img/banner.png">
+        <img class="banner" src="../assets/banner.png">
         <div>
-            <canvas id="grid" width="800" height="800"/>
+            <canvas id="grid" width="600" height="600" style="background-color: #000000;">
         </div>
         <div style="margin-top: 20px;">
-            <a class="tron-button" href="index.html">Return Home</a>
+            <a href="index.html">
+                <button class="tron-button">Return Home</button>
+            </a><br>
         </div>
         <script src="src/client.js"></script>
     </body>
