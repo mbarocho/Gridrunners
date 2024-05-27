@@ -153,8 +153,25 @@ function moveAI(user) {
         return true;
     }
 
-    // Filter out unsafe directions
+    // // Filter out unsafe directions (This code made the AI very unpredictable but made the AI crash into its own light walls)
+    // const safeDirections = directions.filter(isSafeDirection);
+
+    // if (safeDirections.length > 0) {s
+    //     const randomDirection = safeDirections[Math.floor(Math.random() * safeDirections.length)];
+    //     user.xVelocity = randomDirection.x;
+    //     user.yVelocity = randomDirection.y;
+    // }
+
+    // Smarter AI Logic: Prefers straight movement, but avoids collisions (Allows for more stable yet predictable AI movements)
     const safeDirections = directions.filter(isSafeDirection);
+    const currentDirection = { x: user.xVelocity, y: user.yVelocity };
+    const currentDirectionSafe = safeDirections.find(
+        dir => dir.x === currentDirection.x && dir.y === currentDirection.y
+    );
+
+    if (currentDirectionSafe) {
+        return;
+    }
 
     if (safeDirections.length > 0) {
         const randomDirection = safeDirections[Math.floor(Math.random() * safeDirections.length)];
