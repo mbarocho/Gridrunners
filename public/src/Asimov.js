@@ -47,35 +47,32 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function keyInput(event, userIndex) {
-    const user = User.users[userIndex];
+// Human Movement for Player 1
+function keyInputUser1(event) {
+    const user1 = User.users[0];
     switch (event.code) {
         case 'KeyW':
-        case 'ArrowUp':
-            if (user.yVelocity !== 1) {
-                user.yVelocity = -1;
-                user.xVelocity = 0;
+            if (user1.yVelocity != 1) {
+                user1.yVelocity = -1; // Move one tile up
+                user1.xVelocity = 0;
             }
             break;
         case 'KeyS':
-        case 'ArrowDown':
-            if (user.yVelocity !== -1) {
-                user.yVelocity = 1;
-                user.xVelocity = 0;
+            if (user1.yVelocity != -1) {
+                user1.yVelocity = 1; // Move one tile down
+                user1.xVelocity = 0;
             }
             break;
         case 'KeyA':
-        case 'ArrowLeft':
-            if (user.xVelocity !== 1) {
-                user.yVelocity = 0;
-                user.xVelocity = -1;
+            if (user1.xVelocity != 1) {
+                user1.yVelocity = 0; // Move one tile left
+                user1.xVelocity = -1;
             }
             break;
         case 'KeyD':
-        case 'ArrowRight':
-            if (user.xVelocity !== -1) {
-                user.yVelocity = 0;
-                user.xVelocity = 1;
+            if (user1.xVelocity != -1) {
+                user1.yVelocity = 0; // Move one tile right
+                user1.xVelocity = 1;
             }
             break;
     }
@@ -228,12 +225,12 @@ function isGameOver() {
 
 // Game Function
 function drawGame() {
-    document.body.addEventListener('keydown', keyInput); // Add key listener for both players
+    document.body.addEventListener('keydown', keyInputUser1); // Add key listener for Player 1
 
     changeCyclePosition();
     let result = isGameOver();
     if (result) {
-        document.body.removeEventListener('keydown', keyInput);
+        document.body.removeEventListener('keydown', keyInputUser1);
         return;
     }
     clearScreen();
